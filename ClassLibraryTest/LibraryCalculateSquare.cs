@@ -1,34 +1,33 @@
 using System;
 
-namespace LibraryCalculateSquare
+namespace LibraryCalculateArea
 {
     public static class Const
     {
         public static double Pi = 3.14;
     }
 
-    public interface IOvalSquare
+    public interface IOvalArea
     {
-        public double OvalSquare(double radius);
+        public double OvalArea(double radius);
     }
 
-    public interface ITriangleSquare
+    public interface ITriangleArea
     {
-        public double TriangleSquare(double a, double b, double c);
-
-        public double TriangleSquare(double a, double b, double c, out bool isRectangular);
+        public double TriangleArea(double a, double b, double c);
+        public double TriangleArea(double a, double b, double c, out bool isRectangular);
     }
 
-    public class CalculateSquare : IOvalSquare , ITriangleSquare
+    public class CalculateArea : IOvalArea, ITriangleArea
     {
-        public double OvalSquare(double radius)
+        public double OvalArea(double radius)
         {
             double square = Const.Pi * (radius * radius);
 
             return square;
         }
 
-        public double TriangleSquare(double a, double b, double c)
+        public double TriangleArea(double a, double b, double c)
         {
             double p = CalculateHalfPerimeter(a, b, c); //вычисляем полупериметр треугольника
             double s = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
@@ -36,7 +35,7 @@ namespace LibraryCalculateSquare
             return s;
         }
 
-        public double TriangleSquare(double a, double b, double c, out bool isRectangular)
+        public double TriangleArea(double a, double b, double c, out bool isRectangular)
         {
             isRectangular = false;
             if ( (a*a == hypotenuse(b, c)) || (b*b == hypotenuse(a, c)) || (c*c == hypotenuse(a, b)) )
