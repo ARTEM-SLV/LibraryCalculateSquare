@@ -1,6 +1,6 @@
 using System;
 
-namespace LibraryCalculateArea
+namespace LibraryCalculateSquare
 {
     public static class Const
     {
