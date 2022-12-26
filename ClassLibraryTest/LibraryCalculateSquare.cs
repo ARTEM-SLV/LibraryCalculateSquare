@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace LibraryCalculateArea
 {
@@ -29,7 +29,7 @@ namespace LibraryCalculateArea
 
         public double TriangleArea(double a, double b, double c)
         {
-            double p = CalculatePerimeter(a, b, c); //вычисляем полупериметр треугольника
+            double p = CalculateHalfPerimeter(a, b, c); //вычисляем полупериметр треугольника
             double s = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
 
             return s;
@@ -38,22 +38,24 @@ namespace LibraryCalculateArea
         public double TriangleArea(double a, double b, double c, out bool isRectangular)
         {
             isRectangular = false;
-            if (a * a == (c * c) + (b * b))
-                isRectangular = true;
-            else if (b * b == (a * a) + (c * c))
-                isRectangular = true;
-            else if (c * c == (a * a) + (b * b))
+            if ( (a*a == hypotenuse(b, c)) || (b*b == hypotenuse(a, c)) || (c*c == hypotenuse(a, b)) )
                 isRectangular = true;
 
-            double p = CalculatePerimeter(a, b, c); //вычисляем полупериметр треугольника
+            double p = CalculateHalfPerimeter(a, b, c); //вычисляем полупериметр треугольника
             double s = Math.Sqrt(p*(p-a)*(p-b)*(p-c));
 
             return s;
         }
 
-        public double CalculatePerimeter(double a, double b, double c)
+        public double hypotenuse(double a, double b)
+        {
+            return a * a + b * b;
+        }
+
+        public double CalculateHalfPerimeter(double a, double b, double c)
         {
             return (a + b + c) / 2;
         }
     }
 }
+
